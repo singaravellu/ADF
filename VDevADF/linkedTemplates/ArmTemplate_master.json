@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "VDevADF"
 		},
-		"devstorage_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'devstorage'"
-		},
 		"destination_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'destination'"
+		},
+		"devstorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'devstorage'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -42,11 +42,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"devstorage_connectionString": {
-						"value": "[parameters('devstorage_connectionString')]"
-					},
 					"destination_connectionString": {
 						"value": "[parameters('destination_connectionString')]"
+					},
+					"devstorage_connectionString": {
+						"value": "[parameters('devstorage_connectionString')]"
 					}
 				}
 			},

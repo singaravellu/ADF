@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "VDevADF"
 		},
-		"devstorage_connectionString": {
+		"destination_connectionString": {
 			"value": ""
 		},
-		"destination_connectionString": {
+		"devstorage_connectionString": {
 			"value": ""
 		},
 		"containerUri": {

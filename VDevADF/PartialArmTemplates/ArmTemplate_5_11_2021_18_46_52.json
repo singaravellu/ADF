@@ -6,14 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "VDevADF"
-		},
-		"destination_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'destination'"
-		},
-		"devstorage_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'devstorage'"
 		}
 	},
 	"variables": {
@@ -63,15 +55,13 @@
 						"inputs": [
 							{
 								"referenceName": "Excel1",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "DelimitedText1",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -82,79 +72,6 @@
 				"[concat(variables('factoryId'), '/datasets/Excel1')]",
 				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Binary1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "devstorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "new photo.jpg",
-						"folderPath": "folder1",
-						"container": "container1"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/devstorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Binary2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "destination",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "folder1",
-						"container": "destination"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/destination')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/destination')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('destination_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/devstorage')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('devstorage_connectionString')]"
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Excel1')]",
@@ -209,9 +126,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/devstorage')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
@@ -236,9 +151,7 @@
 				},
 				"schema": []
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/destination')]"
-			]
+			"dependsOn": []
 		}
 	]
 }
